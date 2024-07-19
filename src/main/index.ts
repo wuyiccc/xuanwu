@@ -17,6 +17,9 @@ function createWindow(): void {
     }
   })
 
+  // 开启开发者工具栏
+  mainWindow.webContents.openDevTools()
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
