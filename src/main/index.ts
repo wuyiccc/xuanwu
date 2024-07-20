@@ -1,17 +1,16 @@
-import { app, shell, BrowserWindow, ipcMain,  } from 'electron'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
-
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 600,
-    height: 600,
+    width: 500,
+    height: 300,
     show: false,
     // 不显示顶部导航条
-    frame: false,
+    // frame: false,
     // transparent: true,
     // x: width - 600,
     // y: 50,
@@ -26,7 +25,7 @@ function createWindow(): void {
   })
 
   // 开启开发者工具栏
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
