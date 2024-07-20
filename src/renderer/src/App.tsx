@@ -1,7 +1,9 @@
+import Search from './components/Search'
+
 function App(): JSX.Element {
   return (
     <>
-      <div className="bg-red-500">abc</div>
+      <Search />
     </>
   )
 }
