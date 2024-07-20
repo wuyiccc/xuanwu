@@ -12,7 +12,7 @@ function createWindow(): void {
     show: false,
     // 不显示顶部导航条
     frame: false,
-    transparent: true,
+    // transparent: true,
     // x: width - 600,
     // y: 50,
     // 窗口永远保持置顶
