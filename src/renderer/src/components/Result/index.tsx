@@ -22,6 +22,8 @@ export default function () {
           currentIndex + 1 >= searchList.length ? 0 : currentIndex + 1
         )
         break
+      case 'Enter':
+        navigator.clipboard.writeText(searchList[currentIndex].content)
     }
   }
 
@@ -31,7 +33,7 @@ export default function () {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [searchList])
+  }, [searchList, currentIndex])
 
   return (
     <div className={styles.itemContainer}>
