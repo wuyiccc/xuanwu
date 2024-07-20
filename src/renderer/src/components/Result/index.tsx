@@ -7,7 +7,21 @@ export default function () {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const handleKeyDown = (e: KeyboardEvent) => {
-
+    if (searchList.length === 0) {
+      return
+    }
+    switch (e.code) {
+      case 'ArrowUp':
+        setCurrentIndex((currentIndex) =>
+          currentIndex - 1 < 0 ? searchList.length - 1 : currentIndex - 1
+        )
+        break
+      case 'ArrowDown':
+        setCurrentIndex((currentIndex) =>
+          currentIndex + 1 >= searchList.length ? 0 : currentIndex + 1
+        )
+        break
+    }
   }
 
   useEffect(() => {
@@ -20,7 +34,6 @@ export default function () {
 
   return (
     <div className={styles.itemContainer}>
-      {currentIndex}
       {searchList.map((item) => (
         <div key={item.id} className={styles.item}>
           {item.content}
