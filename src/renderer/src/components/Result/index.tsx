@@ -1,6 +1,7 @@
 import StatusDB from '../../status/StatusDB'
 import styles from './index.module.less'
 import { useEffect, useState } from 'react'
+import StringUtils from '../../utils/StringUtils'
 
 export default function () {
   const searchList = StatusDB.db((state) => state.searchList)
@@ -34,8 +35,11 @@ export default function () {
 
   return (
     <div className={styles.itemContainer}>
-      {searchList.map((item) => (
-        <div key={item.id} className={styles.item}>
+      {searchList.map((item, index) => (
+        <div
+          key={item.id}
+          className={`${styles.item} ${currentIndex === index ? styles.itemSelected : StringUtils.EMPTY}`}
+        >
           {item.content}
         </div>
       ))}
