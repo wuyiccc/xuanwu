@@ -5,7 +5,7 @@ import { mockData } from '../../mock/MockData'
 import styles from './index.module.less'
 
 export default function () {
-  const { setSearchList } = StatusDB.db.getState()
+  const { setCodeList } = StatusDB.db.getState()
 
   const [search, setSearch] = useState(StringUtils.EMPTY)
 
@@ -13,14 +13,14 @@ export default function () {
     const inputStr = e.target.value
     if (StringUtils.isEmpty(inputStr)) {
       setSearch(inputStr)
-      setSearchList([])
+      setCodeList([])
       return
     }
     setSearch(inputStr)
     const newList = mockData.filter((code) =>
       code.content.toLowerCase().includes(inputStr.toLowerCase())
     )
-    setSearchList(newList)
+    setCodeList(newList)
   }
 
   return (
