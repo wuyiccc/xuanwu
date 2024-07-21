@@ -6,7 +6,6 @@ import Error from './components/Error'
 function App(): JSX.Element {
   const { register } = useShortcut()
   register('search', 'CommandOrControl+Shift+;')
-  register('search', 'CommandOrControl+Shift+;')
 
   return (
     <>

@@ -13,7 +13,7 @@ export function createWindow(): BrowserWindow {
     show: false,
     // 不显示顶部导航条
     frame: false,
-    // transparent: true,
+    transparent: true,
     // x: width / 2 - 250,
     // y: 0,
     center: true,

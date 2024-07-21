@@ -6,6 +6,10 @@ const config = {
 
 export const registerShortCut = (win: BrowserWindow) => {
   ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search', shortCut: string) => {
+    if (config.search) {
+      globalShortcut.unregister(config.search)
+    }
+
     config.search = shortCut
     switch (type) {
       case 'search':
