@@ -4,6 +4,7 @@ import StringUtils from '../utils/StringUtils'
 
 export default () => {
   const codeList = StatusDB.db((state) => state.codeList)
+  // 建议使用这种方式, 使用 getState的方式获取所有的zustand变量可能会造成不关注的变量刷新也会导致页面渲染, 造成无限循环
   const setCodeList = StatusDB.db((state) => state.setCodeList)
   const setSearch = StatusDB.db((state) => state.setSearch)
 
