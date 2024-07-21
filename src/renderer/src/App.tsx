@@ -1,6 +1,7 @@
 import Search from './components/Search'
 import Result from './components/Result'
 import useShortcut from './hooks/useShortcut'
+import Error from './components/Error'
 
 function App(): JSX.Element {
   const { register } = useShortcut()
@@ -8,6 +9,7 @@ function App(): JSX.Element {
 
   return (
     <>
+      <Error />
       <Search />
       <Result />
     </>

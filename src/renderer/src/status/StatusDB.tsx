@@ -7,7 +7,9 @@ class StatusDB {
     codeList: DataType[]
     setCodeList: (newData: DataType[]) => void
     search: string
-    setSearch: (search) => void
+    setSearch: (search: string) => void
+    error: string
+    setError: (error: string) => void
   }>((set) => ({
     codeList: [],
     setCodeList: (newData) => {
@@ -16,6 +18,10 @@ class StatusDB {
     search: StringUtils.EMPTY,
     setSearch: (search) => {
       set({ search: search })
+    },
+    error: StringUtils.EMPTY,
+    setError: (error: string) => {
+      set({ error: error })
     }
   }))
 }
