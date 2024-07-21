@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-import code from './code'
+import { createWindow } from './code/window'
+import './code'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -19,12 +20,10 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
-  code.createWindow()
-
-  app.on('activate', function() {
+  app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) code.createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
 
