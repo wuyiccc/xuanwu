@@ -35,10 +35,10 @@ export default () => {
     [codeList, id]
   )
 
-  function selectItem(id: number) {
+  async function selectItem(id: number) {
     const content = codeList.find((item) => item.id == id)?.content
     if (content) {
-      navigator.clipboard.writeText(content)
+      await navigator.clipboard.writeText(content)
     }
 
     setCodeList([])
