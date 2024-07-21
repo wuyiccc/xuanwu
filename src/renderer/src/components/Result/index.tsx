@@ -28,6 +28,10 @@ export default function () {
   }
 
   useEffect(() => {
+    setCurrentIndex(0)
+  }, [searchList])
+
+  useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
