@@ -3,6 +3,7 @@ import StatusDB from '../status/StatusDB'
 
 export default () => {
   const codeList = StatusDB.db((state) => state.codeList)
+  const { setCodeList } = StatusDB.db.getState()
   const [id, setId] = useState(0)
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
@@ -39,6 +40,8 @@ export default () => {
     if (content) {
       navigator.clipboard.writeText(content)
     }
+
+    setCodeList([])
     window.api.hideWindow()
   }
 
