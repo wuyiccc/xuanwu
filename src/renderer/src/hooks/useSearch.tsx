@@ -16,9 +16,9 @@ export default () => {
       return
     }
     setSearch(inputStr)
-    const newList = mockData.filter((code) =>
-      code.content.toLowerCase().includes(inputStr.toLowerCase())
-    ).splice(0, 6)
+    const newList = mockData
+      .filter((code) => code.content.toLowerCase().includes(inputStr.toLowerCase()))
+      .splice(0, 6)
     setCodeList(newList)
   }
 
