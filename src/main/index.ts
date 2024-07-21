@@ -1,52 +1,6 @@
-import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
-import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
-import * as ipc from './ipc'
-
-function createWindow(): void {
-  const { width } = screen.getPrimaryDisplay().workAreaSize
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 500,
-    height: 350,
-    show: false,
-    // 不显示顶部导航条
-    frame: false,
-    // transparent: true,
-    x: width / 2 - 250,
-    y: 0,
-    // 窗口永远保持置顶
-    alwaysOnTop: true,
-    autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
-    webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
-    }
-  })
-
-  ipc.registerIpc(mainWindow)
-  // 开启开发者工具栏
-  mainWindow.webContents.openDevTools()
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
-
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-
-  // HMR for renderer base on electron-vite cli.
-  // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
-  }
-}
+import { app, BrowserWindow, ipcMain } from 'electron'
+import { electronApp, optimizer } from '@electron-toolkit/utils'
+import code from './code'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -65,12 +19,12 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
-  createWindow()
+  code.createWindow()
 
-  app.on('activate', function () {
+  app.on('activate', function() {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) code.createWindow()
   })
 })
 
