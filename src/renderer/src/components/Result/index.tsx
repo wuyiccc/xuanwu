@@ -23,6 +23,7 @@ export default function () {
         )
         break
       case 'Enter':
+        // 回车的时候复制文本
         navigator.clipboard.writeText(searchList[currentIndex].content)
     }
   }
