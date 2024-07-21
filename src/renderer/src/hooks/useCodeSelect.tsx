@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import StatusDB from '../status/StatusDB'
+import StringUtils from '../utils/StringUtils'
 
 export default () => {
   const codeList = StatusDB.db((state) => state.codeList)
   const setCodeList = StatusDB.db((state) => state.setCodeList)
+  const setSearch = StatusDB.db((state) => state.setSearch)
 
   const [id, setId] = useState(0)
   const handleKeyEvent = useCallback(
@@ -43,6 +45,7 @@ export default () => {
     }
 
     setCodeList([])
+    setSearch(StringUtils.EMPTY)
     window.api.hideWindow()
   }
 
