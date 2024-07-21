@@ -5,6 +5,9 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {
   hideWindow: () => {
     ipcRenderer.send('hideWindow')
+  },
+  shortCut: (type: 'search', shortCut: string) => {
+    ipcRenderer.send('shortCut', type, shortCut)
   }
 }
 
