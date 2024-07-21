@@ -7,7 +7,7 @@ const api = {
     ipcRenderer.send('hideWindow')
   },
   shortCut: (type: 'search', shortCut: string) => {
-    ipcRenderer.send('shortCut', type, shortCut)
+    return ipcRenderer.invoke('shortCut', type, shortCut)
   }
 }
 

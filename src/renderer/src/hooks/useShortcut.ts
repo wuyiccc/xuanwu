@@ -1,6 +1,8 @@
 export default () => {
-  const register = (shorCut: string = 'CommandOrControl+Shift+;') => {
-    window.api.shortCut('search', shorCut)
+  const register = async (type: 'search', shorCut: string = 'CommandOrControl+Shift+;') => {
+    const isBind = await window.api.shortCut(type, shorCut)
+
+    alert(isBind)
   }
 
   return { register }
