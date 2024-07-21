@@ -3,7 +3,8 @@ import StatusDB from '../status/StatusDB'
 
 export default () => {
   const codeList = StatusDB.db((state) => state.codeList)
-  const { setCodeList } = StatusDB.db.getState()
+  const setCodeList = StatusDB.db((state) => state.setCodeList)
+
   const [id, setId] = useState(0)
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
