@@ -29,6 +29,7 @@ export default () => {
           const content = codeList.find((item) => item.id == id)?.content
           // 回车的时候复制文本
           navigator.clipboard.writeText(content || StringUtils.EMPTY)
+          window.api.hideWindow()
           break
         }
       }
