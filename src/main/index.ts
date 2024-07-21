@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import './ipc'
+import * as ipc from './ipc'
 
 function createWindow(): void {
   const { width } = screen.getPrimaryDisplay().workAreaSize
@@ -26,6 +26,7 @@ function createWindow(): void {
     }
   })
 
+  ipc.registerIpc(mainWindow)
   // 开启开发者工具栏
   mainWindow.webContents.openDevTools()
 
