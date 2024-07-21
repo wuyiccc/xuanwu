@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import StatusDB from '../status/StatusDB'
-import StringUtils from '../utils/StringUtils'
 
 export default () => {
   const codeList = StatusDB.db((state) => state.codeList)
@@ -26,10 +25,7 @@ export default () => {
           })
           break
         case 'Enter': {
-          const content = codeList.find((item) => item.id == id)?.content
-          // 回车的时候复制文本
-          navigator.clipboard.writeText(content || StringUtils.EMPTY)
-          window.api.hideWindow()
+          selectItem(id)
           break
         }
       }
@@ -37,6 +33,14 @@ export default () => {
     },
     [codeList, id]
   )
+
+  function selectItem(id: number) {
+    const content = codeList.find((item) => item.id == id)?.content
+    if (content) {
+      navigator.clipboard.writeText(content)
+    }
+    window.api.hideWindow()
+  }
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvent)
@@ -46,5 +50,5 @@ export default () => {
     }
   }, [handleKeyEvent])
 
-  return { codeList, id }
+  return { codeList, id, selectItem }
 }
