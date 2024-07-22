@@ -1,9 +1,9 @@
 import styles from './index.module.less'
 import StringUtils from '../../utils/StringUtils'
-import useCodeSelect from '../../hooks/useCodeSelect'
+import useSelect from '../../hooks/useSelect'
 
 export default function () {
-  const { codeList, id, selectItem } = useCodeSelect()
+  const { codeList, id, selectItem } = useSelect()
 
   return (
     <div className={styles.itemContainer}>

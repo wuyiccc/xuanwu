@@ -10,6 +10,8 @@ class StatusDB {
     setSearch: (search: string) => void
     error: string
     setError: (error: string) => void
+    id: number
+    setId: (id: number) => void
   }>((set) => ({
     codeList: [],
     setCodeList: (newData) => {
@@ -22,6 +24,10 @@ class StatusDB {
     error: StringUtils.EMPTY,
     setError: (error: string) => {
       set({ error: error })
+    },
+    id: 0,
+    setId: (id: number) => {
+      set({ id: id })
     }
   }))
 }
