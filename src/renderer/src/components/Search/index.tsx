@@ -1,6 +1,7 @@
 import styles from './index.module.less'
 import useSearch from '../../hooks/useSearch'
 import { SettingOne } from '@icon-park/react'
+import { Input } from 'antd'
 
 export default function () {
   const { search, handleSearch } = useSearch()
@@ -16,7 +17,12 @@ export default function () {
           onClick={() => alert('显示配置页面')}
           className={styles.setting}
         />
-        <input value={search} onChange={handleSearch} className={styles.inputText} />
+        <Input
+          value={search}
+          onChange={handleSearch}
+          className={styles.inputText}
+          autoFocus={true}
+        />
       </div>
       <div className={styles.bottomTextLog}>xuanwu</div>
     </div>
