@@ -1,6 +1,6 @@
 import StatusDB from '../../status/StatusDB'
-import styles from './index.module.less'
 import { useEffect } from 'react'
+import { Alert } from 'antd'
 
 export default function () {
   const error = StatusDB.db((state) => state.error)
@@ -15,7 +15,7 @@ export default function () {
 
   return (
     <>
-      <div className={styles.error}>{error}</div>
+      <Alert message={error} type={'info'} showIcon></Alert>
     </>
   )
 }
