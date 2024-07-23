@@ -7,6 +7,8 @@ function App(): JSX.Element {
   const { register } = useShortcut()
   register('search', 'CommandOrControl+Shift+;')
 
+  window.api.setIgnoreMouseEvents(false, { forward: true })
+
   return (
     <>
       <Error />
