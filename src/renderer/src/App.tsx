@@ -2,22 +2,15 @@ import Search from './components/Search'
 import Result from './components/Result'
 import useShortcut from './hooks/useShortcut'
 import Error from './components/Error'
-import { useEffect, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
+import useIgnoreMouseEvents from './hooks/useIgnoreMouseEvents'
 
 function App(): JSX.Element {
   const mainRef = useRef<HTMLDivElement | null>(null)
-  useEffect(() => {
-    mainRef.current?.addEventListener('mouseover', () => {
-      // 鼠标移入 则关闭穿透
-      window.api.setIgnoreMouseEvents(false)
-    })
+  const { setIgnoreMouseEvents } = useIgnoreMouseEvents()
 
-    document.body?.addEventListener('mouseover', (e: MouseEvent) => {
-      if (e.target === document.body) {
-        // 鼠标移入到body, 就加上穿透
-        window.api.setIgnoreMouseEvents(true, { forward: true })
-      }
-    })
+  useEffect(() => {
+    setIgnoreMouseEvents(mainRef as MutableRefObject<HTMLDivElement>)
   }, [])
 
   const { register } = useShortcut()
