@@ -4,19 +4,25 @@ import icon from '../../../resources/icon.png?asset'
 // import { shell, BrowserWindow, screen } from 'electron'
 import { shell, BrowserWindow } from 'electron'
 
-export function createWindow(): BrowserWindow {
+export function createWindow(
+  width: number,
+  height: number,
+  transparent = false,
+  parent?: BrowserWindow
+): BrowserWindow {
   // const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 500,
-    height: 350,
+    width,
+    height,
     show: false,
     // 不显示顶部导航条
     frame: false,
-    transparent: true,
+    transparent: transparent,
     // x: width / 2 - 250,
     // y: 0,
     center: true,
+    parent: parent,
     // 窗口永远保持置顶
     alwaysOnTop: true,
     autoHideMenuBar: true,
