@@ -1,11 +1,11 @@
-import Search from './components/Search'
-import Result from './components/Result'
-import useShortcut from './hooks/useShortcut'
-import Error from './components/Error'
+import Search from '../../components/Search'
+import Result from '../../components/Result'
+import useShortcut from '../../hooks/useShortcut'
+import Error from '../../components/Error'
 import { MutableRefObject, useEffect, useRef } from 'react'
-import useIgnoreMouseEvents from './hooks/useIgnoreMouseEvents'
+import useIgnoreMouseEvents from '../../hooks/useIgnoreMouseEvents'
 
-function App(): JSX.Element {
+export default function (): JSX.Element {
   const mainRef = useRef<HTMLDivElement | null>(null)
   const { setIgnoreMouseEvents } = useIgnoreMouseEvents()
 
@@ -26,5 +26,3 @@ function App(): JSX.Element {
     </div>
   )
 }
-
-export default App

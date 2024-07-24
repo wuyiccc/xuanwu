@@ -24,8 +24,13 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@icon-park/react": "^1.4.2",
+    "@remix-run/router": "^1.18.0",
     "antd": "^5.19.3",
     "electron-updater": "^6.1.7",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.4",
+    "react-router-dom": "^6.25.1",
+    "sort-by": "^1.2.0",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
