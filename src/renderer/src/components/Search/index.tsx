@@ -14,7 +14,7 @@ export default function () {
           size="22"
           fill="#34495e"
           strokeWidth={4}
-          onClick={() => alert('显示配置页面')}
+          onClick={() => window.api.openConfigWindow()}
           className={styles.setting}
         />
         <Input
