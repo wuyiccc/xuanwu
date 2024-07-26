@@ -1,4 +1,4 @@
-import { db } from '../db/connect'
+import { db } from './connect'
 
 export const findAll = (sql: string) => {
   return db.prepare(sql).all()
