@@ -2,24 +2,28 @@ import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 // import { shell, BrowserWindow, screen } from 'electron'
-import { shell, BrowserWindow } from 'electron'
+import { BrowserWindow, shell } from 'electron'
 import * as url from 'node:url'
 
 export function createWindow(): BrowserWindow {
-  // const { width } = screen.getPrimaryDisplay().workAreaSize
+  // const { width: winWidth, height: winHeight } = screen.getPrimaryDisplay().workAreaSize
+  // const width = winWidth * 0.75
+  // const myHeight = winHeight * 1
+  // console.log(winHeight)
+  // console.log(myHeight)
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 1050,
+    height: 650,
     show: false,
     // 不显示顶部导航条
-    // frame: false,
+    frame: true,
     // transparent: transparent,
-    // x: width / 2 - 250,
+    // x: winWidth - width,
     // y: 0,
     center: true,
     // 窗口永远保持置顶
-    alwaysOnTop: true,
+    // alwaysOnTop: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {

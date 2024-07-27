@@ -11,6 +11,7 @@ export default function (): JSX.Element {
 
   useEffect(() => {
     setIgnoreMouseEvents(mainRef as MutableRefObject<HTMLDivElement>)
+    window.api.openConfigWindow()
   }, [])
 
   const { register } = useShortcut()
