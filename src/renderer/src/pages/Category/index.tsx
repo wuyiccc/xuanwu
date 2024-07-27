@@ -7,9 +7,11 @@ export default function () {
 
   return (
     <div className={styles.container}>
-      {categoryList.map((category) => {
-        return <div key={category.id}>{category.name}</div>
-      })}
+      <div>
+        {categoryList.map((category) => {
+          return <div key={category.id}>{category.name}</div>
+        })}
+      </div>
       <div className={styles.leftContainer}>
         <div className={styles.top}>vue.js</div>
         <div className={styles.bottom}>
