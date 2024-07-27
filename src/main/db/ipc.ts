@@ -1,7 +1,9 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
-import * as query from './query'
-
+import { db } from './connect'
+import tables from './tables'
 
 ipcMain.handle('sql', (_event: IpcMainInvokeEvent, sql: string, type: SqlActionType) => {
-  return query[type](sql)
+  console.log(sql)
+  console.log(type)
+  return db.select().from(tables).all()
 })
