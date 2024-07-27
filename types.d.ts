@@ -1,6 +1,6 @@
 type SqlActionType = 'findAll' | 'findOne' | 'insert' | 'updadte' | 'deleteData'
 
-interface Category {
+interface CategoryEntity {
   id?: string
 
   name?: string

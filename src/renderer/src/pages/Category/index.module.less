@@ -16,6 +16,40 @@
 
 .top {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.categoryItem {
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  text-decoration: none;
+  color: black;
+}
+
+.categoryItemSelected {
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  text-decoration: none;
+  color: black;
+  background-color: #bdc3c7;
+}
+
+
+.categoryIcon {
+  margin-right: 5px;
+}
+
+.categoryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bottom {
