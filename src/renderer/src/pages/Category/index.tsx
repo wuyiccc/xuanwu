@@ -1,9 +1,17 @@
-import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
+import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, SettingTwo } from '@icon-park/react'
+import { useEffect } from 'react'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (categoryList.length) {
+      navigate(`/config/category/content/${categoryList[0].id}`)
+    }
+  }, [categoryList])
 
   return (
     <div className={styles.container}>
