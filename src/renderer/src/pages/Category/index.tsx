@@ -1,11 +1,9 @@
-import { Link, Outlet, useLoaderData } from 'react-router-dom'
+import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, FolderClose, SettingTwo } from '@icon-park/react'
-import { useState } from 'react'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
-  const [current, setCurrent] = useState<CategoryEntity>()
 
   return (
     <div className={styles.container}>
@@ -13,13 +11,12 @@ export default function () {
         <div className={styles.top}>
           {categoryList.map((category) => {
             return (
-              <Link
+              <NavLink
                 to={`/config/category/content/${category.id}`}
                 key={category.id}
-                className={
-                  current?.id === category.id ? styles.categoryItemSelected : styles.categoryItem
+                className={({ isActive }) =>
+                  isActive ? styles.categoryItemSelected : styles.categoryItem
                 }
-                onClick={() => setCurrent(category)}
               >
                 <FolderClose
                   theme="outline"
@@ -28,7 +25,7 @@ export default function () {
                   className={styles.categoryIcon}
                 />
                 <div className={styles.categoryText}>{category.name}</div>
-              </Link>
+              </NavLink>
             )
           })}
         </div>
