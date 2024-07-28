@@ -1,10 +1,10 @@
 import { createHashRouter } from 'react-router-dom'
 import Home from '../pages/Home'
 import Config from '../pages/Config'
-import Category from '../pages/Category'
-import Content from '../pages/Content'
-import CategoryLoader from '../pages/Category/CategoryLoader'
-import ContentLoader from '../pages/Content/ContentLoader'
+import ContentList from '../pages/ContentList'
+import CategoryList from '../pages/CategoryList'
+import CategoryListLoader from '../pages/CategoryList/CategoryListLoader'
+import ContentListLoader from '../pages/ContentList/ContentListLoader'
 
 const router = createHashRouter([
   {
@@ -16,14 +16,14 @@ const router = createHashRouter([
     element: <Config />,
     children: [
       {
-        path: 'category',
-        element: <Category />,
-        loader: CategoryLoader,
+        path: 'categoryList',
+        element: <CategoryList />,
+        loader: CategoryListLoader,
         children: [
           {
-            path: 'content/:cid',
-            element: <Content />,
-            loader: ContentLoader
+            path: 'contentList/:cid',
+            element: <ContentList />,
+            loader: ContentListLoader
           }
         ]
       }

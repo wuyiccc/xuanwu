@@ -9,7 +9,7 @@ export default function () {
 
   useEffect(() => {
     if (categoryList.length) {
-      navigate(`/config/category/content/${categoryList[0].id}`)
+      navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
     }
   }, [categoryList])
 
@@ -20,7 +20,7 @@ export default function () {
           {categoryList.map((category) => {
             return (
               <NavLink
-                to={`/config/category/content/${category.id}`}
+                to={`/config/categoryList/contentList/${category.id}`}
                 key={category.id}
                 className={({ isActive }) =>
                   isActive ? styles.categoryItemSelected : styles.categoryItem
