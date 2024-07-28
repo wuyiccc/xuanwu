@@ -1,9 +1,9 @@
 import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
-import { Add, SettingTwo } from '@icon-park/react'
+import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import { useEffect } from 'react'
 
-export default function() {
+export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
   const navigate = useNavigate()
 
@@ -26,7 +26,10 @@ export default function() {
                   isActive ? styles.categoryItemSelected : styles.categoryItem
                 }
               >
-                <div className={styles.categoryText}>{category.name}</div>
+                <div className={styles.categoryContainer}>
+                  <FolderCodeOne theme="outline" size="12" />
+                  <div className={styles.categoryText}>{category.name}</div>
+                </div>
               </NavLink>
             )
           })}
