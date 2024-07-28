@@ -6,4 +6,8 @@ export default class ContentMapper {
   public static getContentListByCategoryId(categoryId: number) {
     return db.select().from(tContent).where(eq(tContent.categoryId, categoryId))
   }
+
+  public static getContentById(id: number) {
+    return db.select().from(tContent).where(eq(tContent.id, id))
+  }
 }

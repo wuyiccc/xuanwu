@@ -7,7 +7,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return CategoryMapper.findAllCategory(methodParam)
   } else if ('ContentMapper.getContentListByCategoryId' === methodName) {
     return ContentMapper.getContentListByCategoryId(methodParam)
+  } else if ('ContentMapper.getContentById' === methodName) {
+    return ContentMapper.getContentById(methodParam)
   }
-
   return null
 })

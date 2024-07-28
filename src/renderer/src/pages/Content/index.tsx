@@ -1,5 +1,8 @@
-import styles from './index.module.less'
+import { useLoaderData } from 'react-router-dom'
 
 export default function () {
-  return <div>内容</div>
+  const content = useLoaderData() as ContentEntity[]
+
+  console.log(content)
+  return <div>{content[0].content}</div>
 }

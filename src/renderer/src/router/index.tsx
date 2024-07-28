@@ -6,6 +6,7 @@ import CategoryList from '../pages/CategoryList'
 import CategoryListLoader from '../pages/CategoryList/CategoryListLoader'
 import ContentListLoader from '../pages/ContentList/ContentListLoader'
 import Content from '../pages/Content'
+import ContentLoader from '../pages/Content/ContentLoader'
 
 const router = createHashRouter([
   {
@@ -28,7 +29,8 @@ const router = createHashRouter([
             children: [
               {
                 path: 'content/:id',
-                element: <Content />
+                element: <Content />,
+                loader: ContentLoader
               }
             ]
           }
