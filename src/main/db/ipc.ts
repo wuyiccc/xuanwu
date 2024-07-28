@@ -3,6 +3,7 @@ import CategoryMapper from './CategoryMapper'
 import ContentMapper from './ContentMapper'
 
 ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, methodParam: any) => {
+  console.log(methodName)
   if ('CategoryMapper.findAllCategory' === methodName) {
     return CategoryMapper.findAllCategory(methodParam)
   } else if ('ContentMapper.getContentListByCategoryId' === methodName) {

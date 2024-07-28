@@ -1,0 +1,30 @@
+.container {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+
+.title {
+  width: 100%;
+  font-size: 1rem; /* text-base */
+  font-weight: 700; /* font-bold */
+  color: #475569; /* text-slate-600 */
+  opacity: 0.95; /* opacity-95 */
+  text-overflow: ellipsis;
+  word-wrap: break-word; /* 添加此属性以确保单词换行 */
+  white-space: normal; /* 确保文本在宽度超出时换行 */
+}
+
+.content {
+  width: 100%;
+  color: #64748b; /* text-slate-500 */
+  opacity: 0.95; /* opacity-95 */
+  line-height: 1.25rem; /* leading-5 */
+  word-wrap: break-word; /* 添加此属性以确保单词换行 */
+  white-space: normal; /* 确保文本在宽度超出时换行 */
+}

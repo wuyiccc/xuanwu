@@ -1,9 +1,18 @@
 import styles from './index.module.less'
-import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
+import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function () {
   const contentList = useLoaderData() as ContentEntity[]
-  console.log(contentList)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (contentList.length) {
+      const content = contentList[0]
+      navigate(`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`)
+    }
+  }, [JSON.stringify(contentList)])
+
   return (
     <div className={styles.container}>
       <div className={styles.list}>
@@ -17,6 +26,7 @@ export default function () {
                 }
               >
                 <div className={styles.titleText}>{content.title}</div>
+                <div className={styles.titleText}>{content.gmtCreate}</div>
               </NavLink>
             </div>
           )

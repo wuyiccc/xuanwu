@@ -3,16 +3,15 @@ import styles from './index.module.less'
 import { Add, SettingTwo } from '@icon-park/react'
 import { useEffect } from 'react'
 
-export default function () {
+export default function() {
   const categoryList = useLoaderData() as CategoryEntity[]
   const navigate = useNavigate()
 
   useEffect(() => {
     if (categoryList.length) {
-      console.log('navicate contentList')
       navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
     }
-  }, [categoryList.length])
+  }, [JSON.stringify(categoryList)])
 
   return (
     <div className={styles.container}>
