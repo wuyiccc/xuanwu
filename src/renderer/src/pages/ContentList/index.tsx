@@ -1,6 +1,7 @@
 import styles from './index.module.less'
 import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import dayjs from 'dayjs'
 
 export default function () {
   const contentList = useLoaderData() as ContentEntity[]
@@ -26,7 +27,9 @@ export default function () {
                 }
               >
                 <div className={styles.titleText}>{content.title}</div>
-                <div className={styles.titleText}>{content.gmtCreate}</div>
+                <div className={styles.titleDate}>
+                  {dayjs(content.gmtCreate).format('YYYY/MM/DD')}
+                </div>
               </NavLink>
             </div>
           )

@@ -6,7 +6,7 @@
 }
 
 .list {
-  width: 200px;
+  width: 300px;
   height: 100%;
   box-sizing: border-box;
   background-color: #f1f1f1;
@@ -23,10 +23,11 @@
 .contentLink {
   box-sizing: border-box;
   text-decoration: none;
-  color: black;
+  color: #1e1e1e;
   width: 100%;
-  display: block;
   padding: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
 .contentLinkSelected {
@@ -35,14 +36,23 @@
   color: white;
   width: 100%;
   background-color: #0652DD;
-  display: block;
   padding: 5px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .titleText {
+  width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.titleDate {
+  width: 100px;
+  color: grey;
+  font-size: 12px;
 }
 
 

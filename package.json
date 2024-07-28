@@ -28,6 +28,7 @@
     "@types/better-sqlite3": "^7.6.11",
     "antd": "^5.19.3",
     "better-sqlite3": "^11.1.2",
+    "dayjs": "^1.11.12",
     "drizzle-orm": "^0.32.1",
     "electron-updater": "^6.1.7",
     "localforage": "^1.10.0",
