@@ -1,9 +1,19 @@
-type SqlActionType = 'findAll' | 'findOne' | 'insert' | 'updadte' | 'deleteData'
-
 interface CategoryEntity {
-  id?: string
+  id?: number
 
   name?: string
+
+  gmtCreate?: string
+}
+
+interface ContentEntity {
+  id?: number
+
+  title?: string
+
+  content?: string
+
+  categoryId?: number
 
   gmtCreate?: string
 }

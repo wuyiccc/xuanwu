@@ -1,9 +1,15 @@
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
-const tables = sqliteTable('category', {
-  id: text('id'),
+export const tCategory = sqliteTable('category', {
+  id: integer('id'),
   name: text('name'),
   gmtCreate: text('gmt_create')
 })
 
-export default tables
+export const tContent = sqliteTable('content', {
+  id: integer('id'),
+  title: text('title'),
+  content: text('content'),
+  categoryId: integer('category_id'),
+  gmtCreate: text('gmt_create')
+})

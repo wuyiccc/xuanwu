@@ -1,9 +1,13 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
-import { db } from './connect'
-import tables from './tables'
+import CategoryMapper from './CategoryMapper'
+import ContentMapper from './ContentMapper'
 
-ipcMain.handle('sql', (_event: IpcMainInvokeEvent, sql: string, type: SqlActionType) => {
-  console.log(sql)
-  console.log(type)
-  return db.select().from(tables).all()
+ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, methodParam: any) => {
+  if ('CategoryMapper.findAllCategory' === methodName) {
+    return CategoryMapper.findAllCategory(methodParam)
+  } else if ('ContentMapper.getContentListByCategoryId' === methodName) {
+    return ContentMapper.getContentListByCategoryId(methodParam)
+  }
+
+  return null
 })

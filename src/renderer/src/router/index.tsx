@@ -4,6 +4,7 @@ import Config from '../pages/Config'
 import Category from '../pages/Category'
 import Content from '../pages/Content'
 import CategoryLoader from '../pages/Category/CategoryLoader'
+import ContentLoader from '../pages/Content/ContentLoader'
 
 const router = createHashRouter([
   {
@@ -21,7 +22,8 @@ const router = createHashRouter([
         children: [
           {
             path: 'content/:cid',
-            element: <Content />
+            element: <Content />,
+            loader: ContentLoader
           }
         ]
       }
