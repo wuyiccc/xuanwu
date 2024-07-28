@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
-import { Add, FolderClose, SettingTwo } from '@icon-park/react'
+import { Add, SettingTwo } from '@icon-park/react'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
@@ -18,12 +18,12 @@ export default function () {
                   isActive ? styles.categoryItemSelected : styles.categoryItem
                 }
               >
-                <FolderClose
-                  theme="outline"
-                  size="24"
-                  fill="#333"
-                  className={styles.categoryIcon}
-                />
+                {/*<FolderClose*/}
+                {/*  theme="outline"*/}
+                {/*  size="24"*/}
+                {/*  fill="#333"*/}
+                {/*  className={styles.categoryIcon}*/}
+                {/*/>*/}
                 <div className={styles.categoryText}>{category.name}</div>
               </NavLink>
             )

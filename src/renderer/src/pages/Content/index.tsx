@@ -6,7 +6,15 @@ export default function () {
   console.log(contentList)
   return (
     <div className={styles.container}>
-      <div className={styles.list}>list</div>
+      <div className={styles.list}>
+        {contentList.map((content) => {
+          return (
+            <div key={content.id} className={styles.contentItem}>
+              {content.title}
+            </div>
+          )
+        })}
+      </div>
       <div className={styles.content}>content</div>
     </div>
   )
