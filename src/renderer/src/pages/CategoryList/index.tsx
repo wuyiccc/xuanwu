@@ -9,9 +9,10 @@ export default function () {
 
   useEffect(() => {
     if (categoryList.length) {
+      console.log('navicate contentList')
       navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
     }
-  }, [categoryList])
+  }, [categoryList.length])
 
   return (
     <div className={styles.container}>
@@ -26,12 +27,6 @@ export default function () {
                   isActive ? styles.categoryItemSelected : styles.categoryItem
                 }
               >
-                {/*<FolderClose*/}
-                {/*  theme="outline"*/}
-                {/*  size="24"*/}
-                {/*  fill="#333"*/}
-                {/*  className={styles.categoryIcon}*/}
-                {/*/>*/}
                 <div className={styles.categoryText}>{category.name}</div>
               </NavLink>
             )

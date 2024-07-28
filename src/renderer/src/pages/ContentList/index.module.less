@@ -6,17 +6,44 @@
 }
 
 .list {
+  box-sizing: border-box;
   width: 200px;
   background-color: #f1f1f1;
-  padding: 5px;
-}
-
-.content {
-
-  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .contentItem {
+  box-sizing: border-box;
+}
+
+.contentLink {
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  display: block;
+  padding: 5px;
+}
+
+.contentLinkSelected {
+  box-sizing: border-box;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  background-color: #0652DD;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.titleText {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.content {
+  flex: 1;
 }
