@@ -10,4 +10,11 @@ export default class ContentMapper {
   public static getContentById(id: number) {
     return db.select().from(tContent).where(eq(tContent.id, id))
   }
+
+  public static updateContentById(id: number, newContent: string, newTitle: string) {
+    return db
+      .update(tContent)
+      .set({ content: newContent, title: newTitle })
+      .where(eq(tContent.id, id))
+  }
 }

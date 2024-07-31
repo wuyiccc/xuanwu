@@ -2,6 +2,7 @@ import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import { useEffect } from 'react'
+import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]

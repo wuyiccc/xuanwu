@@ -2,6 +2,7 @@ import styles from './index.module.less'
 import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
+import ContentEntity from '../../../../pojo/entity/ContentEntity'
 
 export default function () {
   const contentList = useLoaderData() as ContentEntity[]
