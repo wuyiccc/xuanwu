@@ -1,6 +1,5 @@
-import { useLoaderData } from 'react-router-dom'
+import { Form, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
-import { Button, Form } from 'antd'
 
 export default function () {
   const content = useLoaderData() as ContentEntity[]
@@ -8,13 +7,18 @@ export default function () {
     <Form method="PUT">
       <div className={styles.container}>
         {/*<h1 className={styles.title}>{content[0].title}</h1>*/}
-        <input className={styles.title} defaultValue={content[0].title} />
+        <input name="title" className={styles.title} defaultValue={content[0].title} />
         {/*<div className={styles.content}>{content[0].content}</div>*/}
-        <textarea className={styles.content} defaultValue={content[0].content}></textarea>
+        <textarea
+          name="content"
+          className={styles.content}
+          defaultValue={content[0].content}
+        ></textarea>
         <div className={styles.saveButton}>
-          <Button type="default" size="small">
-            保存
-          </Button>
+          {/*<Button type="default" size="small">*/}
+          {/*  保存*/}
+          {/*</Button>*/}
+          <button>保存</button>
         </div>
       </div>
     </Form>

@@ -7,6 +7,7 @@ import CategoryListLoader from '../pages/CategoryList/CategoryListLoader'
 import ContentListLoader from '../pages/ContentList/ContentListLoader'
 import Content from '../pages/Content'
 import ContentLoader from '../pages/Content/ContentLoader'
+import ContentAction from '../pages/Content/ContentAction'
 
 const router = createHashRouter([
   {
@@ -30,7 +31,8 @@ const router = createHashRouter([
               {
                 path: 'content/:id',
                 element: <Content />,
-                loader: ContentLoader
+                loader: ContentLoader,
+                action: ContentAction
               }
             ]
           }
