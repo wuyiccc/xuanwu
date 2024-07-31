@@ -1,18 +1,17 @@
-import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
-import { useEffect } from 'react'
 import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (categoryList.length) {
-      navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
-    }
-  }, [JSON.stringify(categoryList)])
+  // const navigate = useNavigate()
+  //
+  // useEffect(() => {
+  //   if (categoryList.length) {
+  //     navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
+  //   }
+  // }, [JSON.stringify(categoryList)])
 
   return (
     <div className={styles.container}>
