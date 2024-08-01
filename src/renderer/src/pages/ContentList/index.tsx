@@ -10,7 +10,7 @@ export default function () {
   return (
     <div className={styles.container}>
       <div className={styles.list}>
-        <Form method="POST">
+        <Form>
           <div className={styles.searchContainer}>
             <input
               type="text"

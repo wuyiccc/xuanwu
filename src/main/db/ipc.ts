@@ -18,6 +18,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
       newContent.content as string,
       newContent.title as string
     )
+  } else if ('ContentMapper.searchContentByTitle' === methodName) {
+    return ContentMapper.searchContentByTitle(methodParam)
   }
   return null
 })

@@ -1,6 +1,6 @@
 import { db } from './connect'
 import { tContent } from './tables'
-import { eq } from 'drizzle-orm'
+import { eq, like } from 'drizzle-orm'
 
 export default class ContentMapper {
   public static getContentListByCategoryId(categoryId: number) {
@@ -21,5 +21,12 @@ export default class ContentMapper {
       .update(tContent)
       .set({ content: newContent, title: newTitle })
       .where(eq(tContent.id, id))
+  }
+
+  public static searchContentByTitle(title: string) {
+    return db
+      .select()
+      .from(tContent)
+      .where(like(tContent.title, `%${title}%`))
   }
 }
