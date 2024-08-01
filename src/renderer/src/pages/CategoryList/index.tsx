@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
-import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
+import { Add, AllApplication, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
 
 export default function () {
@@ -17,6 +17,23 @@ export default function () {
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <div className={styles.top}>
+          <div className={styles.quickOpr}>快捷操作</div>
+          <NavLink
+            to={`/config/categoryList/contentList`}
+            className={({ isActive }) =>
+              isActive ? styles.categoryItemSelectedAll : styles.categoryItemAll
+            }
+            end
+          >
+            {/*<div className={styles.categoryItemSelected}>*/}
+            <div className={styles.categoryContainer}>
+              <AllApplication theme="outline" size="12" fill="#333" strokeWidth={3} />
+              <div className={styles.categoryText}>所有分类</div>
+            </div>
+            {/*</div>*/}
+          </NavLink>
+        </div>
+        <div className={styles.top}>
           {categoryList.map((category) => {
             return (
               <NavLink
@@ -27,7 +44,7 @@ export default function () {
                 }
               >
                 <div className={styles.categoryContainer}>
-                  <FolderCodeOne theme="outline" size="12" />
+                  <FolderCodeOne theme="outline" size="12" strokeWidth={3} />
                   <div className={styles.categoryText}>{category.name}</div>
                 </div>
               </NavLink>

@@ -8,7 +8,7 @@ export default function () {
   return (
     <Form method="PUT">
       <div className={styles.container}>
-        <input hidden name="id" value={content[0].id} />
+        <input hidden name="id" value={content[0].id} readOnly />
         {/*<h1 className={styles.title}>{content[0].title}</h1>*/}
         <input
           name="title"

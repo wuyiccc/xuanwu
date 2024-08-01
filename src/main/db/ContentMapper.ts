@@ -4,7 +4,12 @@ import { eq } from 'drizzle-orm'
 
 export default class ContentMapper {
   public static getContentListByCategoryId(categoryId: number) {
-    return db.select().from(tContent).where(eq(tContent.categoryId, categoryId))
+    console.log('categoryId:', categoryId)
+    if (categoryId === undefined) {
+      return db.select().from(tContent).all()
+    } else {
+      return db.select().from(tContent).where(eq(tContent.categoryId, categoryId))
+    }
   }
 
   public static getContentById(id: number) {

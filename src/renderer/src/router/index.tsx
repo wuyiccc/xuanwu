@@ -40,6 +40,19 @@ const router = createHashRouter([
                 action: ContentAction
               }
             ]
+          },
+          {
+            path: 'contentList/:cid?',
+            element: <ContentList />,
+            loader: ContentListLoader,
+            children: [
+              {
+                path: 'content/:id',
+                element: <Content />,
+                loader: ContentLoader,
+                action: ContentAction
+              }
+            ]
           }
         ]
       }
