@@ -1,22 +1,28 @@
 import styles from './index.module.less'
-import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
+import { Form, NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import dayjs from 'dayjs'
 import ContentEntity from '../../../../pojo/entity/ContentEntity'
+import { Button } from 'antd'
 
 export default function () {
   const contentList = useLoaderData() as ContentEntity[]
-  // const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   if (contentList.length) {
-  //     const content = contentList[0]
-  //     navigate(`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`)
-  //   }
-  // }, [JSON.stringify(contentList)])
 
   return (
     <div className={styles.container}>
       <div className={styles.list}>
+        <Form method="POST">
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              placeholder="搜索..."
+              className={styles.searchInput}
+              name="searchWord"
+            />
+            <Button htmlType="submit" type="default" size="small" className={styles.searchButton}>
+              搜索
+            </Button>
+          </div>
+        </Form>
         {contentList.map((content) => {
           return (
             <div key={content.id} className={styles.contentItem}>

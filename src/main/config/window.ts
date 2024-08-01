@@ -47,7 +47,7 @@ export function createWindow(): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config/categoryList')
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config/categoryList/contentList')
   } else {
     mainWindow.loadURL(
       url.format({
@@ -58,7 +58,7 @@ export function createWindow(): BrowserWindow {
         // protocol后面需要两个/
         slashes: true,
         // hash的值
-        hash: 'config'
+        hash: 'config/categoryList/contentList'
       })
     )
   }
