@@ -1,6 +1,6 @@
 import { db } from './connect'
 import { tContent } from './tables'
-import { desc, eq, like } from 'drizzle-orm'
+import { and, desc, eq, like } from 'drizzle-orm'
 import ContentEntity from '../../pojo/entity/ContentEntity'
 
 export default class ContentMapper {
@@ -28,11 +28,11 @@ export default class ContentMapper {
       .where(eq(tContent.id, id))
   }
 
-  public static searchContentByTitle(title: string) {
+  public static searchContentByTitle(title: string, categoryId: number) {
     return db
       .select()
       .from(tContent)
-      .where(like(tContent.title, `%${title}%`))
+      .where(and(like(tContent.title, `%${title}%`), eq(tContent.categoryId, categoryId)))
       .orderBy(desc(tContent.gmtCreate))
   }
 

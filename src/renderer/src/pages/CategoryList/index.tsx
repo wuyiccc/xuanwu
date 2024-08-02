@@ -2,16 +2,12 @@ import { NavLink, Outlet, useLoaderData } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, AllApplication, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
+import StatusDB from '../../status/StatusDB'
 
 export default function () {
   const categoryList = useLoaderData() as CategoryEntity[]
-  // const navigate = useNavigate()
-  //
-  // useEffect(() => {
-  //   if (categoryList.length) {
-  //     navigate(`/config/categoryList/contentList/${categoryList[0].id}`)
-  //   }
-  // }, [JSON.stringify(categoryList)])
+
+  const setCategoryId = StatusDB.db((state) => state.setCategoryId)
 
   return (
     <div className={styles.container}>
@@ -42,6 +38,10 @@ export default function () {
                 className={({ isActive }) =>
                   isActive ? styles.categoryItemSelected : styles.categoryItem
                 }
+                onClick={() => {
+                  console.log(category.id)
+                  setCategoryId(category.id!)
+                }}
               >
                 <div className={styles.categoryContainer}>
                   <FolderCodeOne theme="outline" size="12" strokeWidth={3} />

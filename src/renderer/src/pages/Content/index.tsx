@@ -17,6 +17,7 @@ export default function () {
           onChange={(e) => {
             submit(e.target.form)
           }}
+          autoFocus
         />
         {/*<div className={styles.content}>{content[0].content}</div>*/}
         <textarea

@@ -1,44 +1,75 @@
 import styles from './index.module.less'
-import { Form, NavLink, Outlet, useLoaderData, useSubmit } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import ContentEntity from '../../../../pojo/entity/ContentEntity'
 import { Add } from '@icon-park/react'
 import ContentApi from '../../api/ContentApi'
+import StatusDB from '../../status/StatusDB'
+import { useEffect, useState } from 'react'
 
-export default function () {
-  const contentList = useLoaderData() as ContentEntity[]
+export default function() {
+  const categoryId = StatusDB.db((state) => state.categoryId)
+  // const submit = useSubmit()
 
-  const submit = useSubmit()
+  const [contentList, setContentList] = useState<ContentEntity[]>([])
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    initData()
+  }, [categoryId])
+
+  const initData = async () => {
+    const tmpList = (await ContentApi.getContentListByCategoryId(categoryId)) as ContentEntity[]
+    setContentList(tmpList)
+  }
+
+  useEffect(() => {
+  }, [categoryId])
+
+  const searchData = async (searchWord: string) => {
+    const search = new ContentEntity()
+    search.categoryId = categoryId
+    search.title = searchWord
+    const tmpList = (await ContentApi.searchContentByTitle(search)) as ContentEntity[]
+    console.log(tmpList)
+    setContentList(tmpList)
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.list}>
-        <Form>
-          <div className={styles.searchContainer}>
-            <input
-              type="text"
-              placeholder="搜索..."
-              className={styles.searchInput}
-              name="searchWord"
-              onChange={(e) => submit(e.target.form)}
-            />
-            <Add
-              theme={'outline'}
-              size={18}
-              strokeWidth={2}
-              fill="#000000"
-              onClick={() => {
-                const c = new ContentEntity()
-                c.title = '新增title'
-                c.content = '新增content'
-                c.categoryId = 1
-                c.gmtCreate = dayjs().format('YYYY-MM-DD HH:mm:ss')
-                ContentApi.createContent(c)
-                console.log('yes amd')
-              }}
-            ></Add>
-          </div>
-        </Form>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="搜索..."
+            className={styles.searchInput}
+            name="searchWord"
+            onChange={(e) => {
+              searchData(e.target.value)
+            }}
+          />
+          <Add
+            theme={'outline'}
+            size={18}
+            strokeWidth={2}
+            fill="#000000"
+            onClick={async () => {
+              const c = new ContentEntity()
+              c.title = '新增title:' + dayjs()
+              c.content = '新增content' + categoryId
+              c.categoryId = categoryId
+              c.gmtCreate = dayjs().format('YYYY-MM-DD HH:mm:ss')
+              const data = (await ContentApi.createContent(c)) as ContentEntity[]
+
+              await initData()
+
+              console.log(data[0].id)
+
+              navigate(`/config/categoryList/contentList/${categoryId}/content/${data[0].id}`)
+            }}
+          ></Add>
+        </div>
         {contentList.map((content) => {
           return (
             <div key={content.id} className={styles.contentItem}>
