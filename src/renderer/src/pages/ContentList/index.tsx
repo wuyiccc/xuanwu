@@ -7,7 +7,7 @@ import ContentApi from '../../api/ContentApi'
 import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
 
-export default function() {
+export default function () {
   const categoryId = StatusDB.db((state) => state.categoryId)
   // const submit = useSubmit()
 
@@ -24,8 +24,7 @@ export default function() {
     setContentList(tmpList)
   }
 
-  useEffect(() => {
-  }, [categoryId])
+  useEffect(() => {}, [categoryId])
 
   const searchData = async (searchWord: string) => {
     const search = new ContentEntity()
@@ -56,8 +55,8 @@ export default function() {
             fill="#000000"
             onClick={async () => {
               const c = new ContentEntity()
-              c.title = '新增title:' + dayjs()
-              c.content = '新增content' + categoryId
+              c.title = '未命名内容标题'
+              c.content = '未命名内容'
               c.categoryId = categoryId
               c.gmtCreate = dayjs().format('YYYY-MM-DD HH:mm:ss')
               const data = (await ContentApi.createContent(c)) as ContentEntity[]
