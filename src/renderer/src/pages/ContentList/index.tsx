@@ -6,8 +6,23 @@ import { Add } from '@icon-park/react'
 import ContentApi from '../../api/ContentApi'
 import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
+import { Dropdown, MenuProps } from 'antd'
 
 export default function () {
+  const items: MenuProps['items'] = [
+    {
+      label: '1st menu item',
+      key: '1'
+    },
+    {
+      label: '2nd menu item',
+      key: '2'
+    },
+    {
+      label: '3rd menu item',
+      key: '3'
+    }
+  ]
   const categoryId = StatusDB.db((state) => state.categoryId)
   // const submit = useSubmit()
 
@@ -71,19 +86,21 @@ export default function () {
         </div>
         {contentList.map((content) => {
           return (
-            <div key={content.id} className={styles.contentItem}>
-              <NavLink
-                to={`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`}
-                className={({ isActive }) =>
-                  isActive ? styles.contentLinkSelected : styles.contentLink
-                }
-              >
-                <div className={styles.titleText}>{content.title}</div>
-                <div className={styles.titleDate}>
-                  {dayjs(content.gmtCreate).format('YYYY/MM/DD')}
-                </div>
-              </NavLink>
-            </div>
+            <Dropdown menu={{ items }} trigger={['contextMenu']} key={content.id}>
+              <div key={content.id} className={styles.contentItem}>
+                <NavLink
+                  to={`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`}
+                  className={({ isActive }) =>
+                    isActive ? styles.contentLinkSelected : styles.contentLink
+                  }
+                >
+                  <div className={styles.titleText}>{content.title}</div>
+                  <div className={styles.titleDate}>
+                    {dayjs(content.gmtCreate).format('YYYY/MM/DD')}
+                  </div>
+                </NavLink>
+              </div>
+            </Dropdown>
           )
         })}
       </div>
