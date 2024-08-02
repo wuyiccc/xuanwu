@@ -1,11 +1,13 @@
 import styles from './index.module.less'
-import { Form, NavLink, Outlet, useLoaderData } from 'react-router-dom'
+import { Form, NavLink, Outlet, useLoaderData, useSubmit } from 'react-router-dom'
 import dayjs from 'dayjs'
 import ContentEntity from '../../../../pojo/entity/ContentEntity'
 import { Button } from 'antd'
 
 export default function () {
   const contentList = useLoaderData() as ContentEntity[]
+
+  const submit = useSubmit()
 
   return (
     <div className={styles.container}>
@@ -17,6 +19,7 @@ export default function () {
               placeholder="搜索..."
               className={styles.searchInput}
               name="searchWord"
+              onChange={(e) => submit(e.target.form)}
             />
             <Button htmlType="submit" type="default" size="small" className={styles.searchButton}>
               搜索
