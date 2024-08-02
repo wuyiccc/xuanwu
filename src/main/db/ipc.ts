@@ -20,6 +20,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     )
   } else if ('ContentMapper.searchContentByTitle' === methodName) {
     return ContentMapper.searchContentByTitle(methodParam)
+  } else if ('ContentMapper.addContent' === methodName) {
+    return ContentMapper.addContent(methodParam as ContentEntity)
   }
   return null
 })
