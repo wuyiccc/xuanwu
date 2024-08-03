@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { ConfigProvider, Dropdown, MenuProps } from 'antd'
 import StringUtils from '../../utils/StringUtils'
 
-export default function () {
+export default function() {
   const categoryId = StatusDB.db((state) => state.categoryId)
   // const submit = useSubmit()
 
@@ -29,7 +29,8 @@ export default function () {
     setContentList(tmpList)
   }
 
-  useEffect(() => {}, [categoryId])
+  useEffect(() => {
+  }, [categoryId])
 
   const searchData = async (searchWord: string) => {
     const search = new ContentEntity()
