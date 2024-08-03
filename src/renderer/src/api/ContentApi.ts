@@ -20,4 +20,12 @@ export default class ContentApi {
   public static async updateContentCategoryId(data: ContentEntity) {
     return window.api.mapper('ContentMapper.updateContentCategoryId', data)
   }
+
+  public static async updateContentById(data: ContentEntity) {
+    return window.api.mapper('ContentMapper.updateContentById', data)
+  }
+
+  public static async getContentById(id: number) {
+    return window.api.mapper('ContentMapper.getContentById', id)
+  }
 }

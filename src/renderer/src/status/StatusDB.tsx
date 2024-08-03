@@ -14,6 +14,8 @@ class StatusDB {
     setId: (id: number) => void
     categoryId: number
     setCategoryId: (categoryId: number) => void
+    contentId: number
+    setContentId: (contentId: number) => void
   }>((set) => ({
     codeList: [],
     setCodeList: (newData) => {
@@ -34,6 +36,10 @@ class StatusDB {
     categoryId: 0,
     setCategoryId: (categoryId: number) => {
       set({ categoryId: categoryId })
+    },
+    contentId: 0,
+    setContentId: (contentId: number) => {
+      set({ contentId: contentId })
     }
   }))
 }

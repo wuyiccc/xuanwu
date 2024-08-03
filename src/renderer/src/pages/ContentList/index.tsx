@@ -11,7 +11,7 @@ import StringUtils from '../../utils/StringUtils'
 
 export default function () {
   const categoryId = StatusDB.db((state) => state.categoryId)
-  // const submit = useSubmit()
+  const setContentId = StatusDB.db((state) => state.setContentId)
 
   const [contentList, setContentList] = useState<ContentEntity[]>([])
 
@@ -119,6 +119,9 @@ export default function () {
                     }}
                     onDragEnd={() => {
                       initData()
+                    }}
+                    onClick={() => {
+                      setContentId(content.id!)
                     }}
                   >
                     <div className={styles.titleText}>{content.title}</div>
