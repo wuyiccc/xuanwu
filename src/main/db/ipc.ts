@@ -2,6 +2,7 @@ import { ipcMain, IpcMainInvokeEvent } from 'electron'
 import CategoryMapper from './CategoryMapper'
 import ContentMapper from './ContentMapper'
 import ContentEntity from '../../pojo/entity/ContentEntity'
+import CategoryEntity from '../../pojo/entity/CategoryEntity'
 
 ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, methodParam: any) => {
   // console.log(methodName)
@@ -25,6 +26,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return ContentMapper.addContent(methodParam as ContentEntity)
   } else if ('ContentMapper.deleteContent' === methodName) {
     return ContentMapper.deleteContent(methodParam)
+  } else if ('CategoryMapper.updateCategoryById' === methodName) {
+    return CategoryMapper.updateCategoryById(methodParam as CategoryEntity)
   }
   return null
 })

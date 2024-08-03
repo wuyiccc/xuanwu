@@ -3,7 +3,6 @@ import Home from '../pages/Home'
 import Config from '../pages/Config'
 import ContentList from '../pages/ContentList'
 import CategoryList from '../pages/CategoryList'
-import CategoryListLoader from '../pages/CategoryList/CategoryListLoader'
 import Content from '../pages/Content'
 import ContentLoader from '../pages/Content/ContentLoader'
 import ContentAction from '../pages/Content/ContentAction'
@@ -21,7 +20,6 @@ const router = createHashRouter([
       {
         path: 'categoryList',
         element: <CategoryList />,
-        loader: CategoryListLoader,
         children: [
           {
             path: 'contentList/:cid?',
