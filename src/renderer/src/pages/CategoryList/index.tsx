@@ -5,13 +5,11 @@ import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
 import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
 import CategoryApi from '../../api/CategoryApi'
-import { ConfigProvider, Dropdown, Input, MenuProps, Modal } from 'antd'
+import { ConfigProvider, Input } from 'antd'
 
 export default function () {
   const setCategoryId = StatusDB.db((state) => state.setCategoryId)
   const [categoryList, setCategoryList] = useState<CategoryEntity[]>([])
-
-  const [showEditModal, setShowEdiModal] = useState<boolean>(false)
 
   const [editCategory, setEditCategory] = useState<CategoryEntity>()
 
@@ -24,23 +22,9 @@ export default function () {
     setCategoryList(myList)
   }
 
-  function generateMenuItems(category: CategoryEntity) {
-    const items: MenuProps['items'] = [
-      {
-        label: '修改',
-        key: '1',
-        onClick: async () => {
-          setEditCategory(category)
-          setShowEdiModal(true)
-        }
-      }
-    ]
-    return items
-  }
-
   const updateCategory = async () => {
     CategoryApi.updateCategoryById(editCategory!)
-    setShowEdiModal(false)
+    setEditCategory(new CategoryEntity())
     initData()
   }
 
@@ -61,28 +45,53 @@ export default function () {
             }}
           >
             {categoryList.map((category) => {
-              const items = generateMenuItems(category)
-              return (
-                <Dropdown trigger={['contextMenu']} key={category.id} menu={{ items }}>
-                  <div className={styles.commonCategoryItem}>
-                    <NavLink
-                      to={`/config/categoryList/contentList/${category.id}`}
-                      key={category.id}
-                      className={({ isActive }) =>
-                        isActive ? styles.categoryItemSelected : styles.categoryItem
+              if (editCategory && editCategory.id === category.id) {
+                return (
+                  <ConfigProvider
+                    theme={{
+                      token: {
+                        /* 这里是你的全局 token */
+                        colorText: 'black',
+                        colorBgElevated: 'grey'
                       }
-                      onClick={() => {
-                        console.log(category.id)
-                        setCategoryId(category.id!)
+                    }}
+                  >
+                    <Input
+                      key={category.id}
+                      placeholder="请输入分类名称"
+                      value={editCategory.name}
+                      onChange={(e) => {
+                        const newData = new CategoryEntity()
+                        newData.id = editCategory!.id
+                        newData.name = e.target.value
+                        setEditCategory(newData)
                       }}
-                    >
-                      <div className={styles.categoryContainer}>
-                        <FolderCodeOne theme="outline" size="12" strokeWidth={3} />
-                        <div className={styles.categoryText}>{category.name}</div>
-                      </div>
-                    </NavLink>
-                  </div>
-                </Dropdown>
+                      onPressEnter={updateCategory}
+                    />
+                  </ConfigProvider>
+                )
+              }
+
+              return (
+                <div className={styles.commonCategoryItem}>
+                  <NavLink
+                    to={`/config/categoryList/contentList/${category.id}`}
+                    key={category.id}
+                    className={({ isActive }) =>
+                      isActive ? styles.categoryItemSelected : styles.categoryItem
+                    }
+                    onClick={() => {
+                      console.log(category.id)
+                      setCategoryId(category.id!)
+                    }}
+                    onDoubleClick={() => setEditCategory(category)}
+                  >
+                    <div className={styles.categoryContainer}>
+                      <FolderCodeOne theme="outline" size="12" strokeWidth={3} />
+                      <div className={styles.categoryText}>{category.name}</div>
+                    </div>
+                  </NavLink>
+                </div>
               )
             })}
           </ConfigProvider>
@@ -95,28 +104,6 @@ export default function () {
       <div className={styles.rightContainer}>
         <Outlet></Outlet>
       </div>
-
-      <Modal
-        title="编辑分类"
-        open={showEditModal}
-        onOk={updateCategory}
-        onCancel={() => setShowEdiModal(false)}
-      >
-        {editCategory ? (
-          <Input
-            placeholder="请输入分类名称"
-            value={editCategory.name}
-            onChange={(e) => {
-              const newData = new CategoryEntity()
-              newData.id = editCategory.id
-              newData.name = e.target.value
-              setEditCategory(newData)
-            }}
-          />
-        ) : (
-          <div></div>
-        )}
-      </Modal>
     </div>
   )
 }
