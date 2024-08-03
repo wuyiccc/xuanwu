@@ -12,22 +12,8 @@ export default function () {
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
-        <div className={styles.top}>
-          <div className={styles.quickOpr}>快捷操作</div>
-          {/*<NavLink*/}
-          {/*  to={`/config/categoryList/contentList`}*/}
-          {/*  className={({ isActive }) =>*/}
-          {/*    isActive ? styles.categoryItemSelectedAll : styles.categoryItemAll*/}
-          {/*  }*/}
-          {/*  end*/}
-          {/*>*/}
-            {/*<div className={styles.categoryItemSelected}>*/}
-            {/*<div className={styles.categoryContainer}>*/}
-            {/*  <AllApplication theme="outline" size="12" fill="#333" strokeWidth={3} />*/}
-            {/*  <div className={styles.categoryText}>所有分类</div>*/}
-            {/*</div>*/}
-            {/*</div>*/}
-          {/*</NavLink>*/}
+        <div className={styles.quickOpr}>
+          <div>快捷操作</div>
         </div>
         <div className={styles.top}>
           {categoryList.map((category) => {

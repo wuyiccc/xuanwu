@@ -18,10 +18,18 @@
   display: flex;
   flex-direction: column;
   padding: 5px;
+  overflow-y: scroll;
+  flex: 1;
 }
 
 .quickOpr {
-
+  height: 50px;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .categoryItemAll {
@@ -47,6 +55,15 @@
   padding: 3px;
   text-decoration: none;
   color: black;
+  border-radius: 5px;
+}
+.categoryItem:hover {
+  box-sizing: border-box;
+  padding: 3px;
+  text-decoration: none;
+  background-color: grey;
+  border-radius: 5px;
+  color: white;
 }
 
 .categoryItemSelected {
