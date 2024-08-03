@@ -39,4 +39,8 @@ export default class ContentMapper {
   public static addContent(data: ContentEntity) {
     return db.insert(tContent).values(data).returning()
   }
+
+  public static deleteContent(data: ContentEntity) {
+    return db.delete(tContent).where(eq(tContent.id, data.id!))
+  }
 }

@@ -12,4 +12,8 @@ export default class ContentApi {
   public static async searchContentByTitle(searchWord: ContentEntity) {
     return window.api.mapper('ContentMapper.searchContentByTitle', searchWord)
   }
+
+  public static async deleteContent(data: ContentEntity) {
+    return window.api.mapper('ContentMapper.deleteContent', data)
+  }
 }

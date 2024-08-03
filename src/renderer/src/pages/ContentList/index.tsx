@@ -6,23 +6,10 @@ import { Add } from '@icon-park/react'
 import ContentApi from '../../api/ContentApi'
 import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
-import { Dropdown, MenuProps } from 'antd'
+import { ConfigProvider, Dropdown, MenuProps } from 'antd'
+import StringUtils from '../../utils/StringUtils'
 
 export default function () {
-  const items: MenuProps['items'] = [
-    {
-      label: '1st menu item',
-      key: '1'
-    },
-    {
-      label: '2nd menu item',
-      key: '2'
-    },
-    {
-      label: '3rd menu item',
-      key: '3'
-    }
-  ]
   const categoryId = StatusDB.db((state) => state.categoryId)
   // const submit = useSubmit()
 
@@ -35,7 +22,10 @@ export default function () {
   }, [categoryId])
 
   const initData = async () => {
-    const tmpList = (await ContentApi.getContentListByCategoryId(categoryId)) as ContentEntity[]
+    const search = new ContentEntity()
+    search.categoryId = categoryId
+    search.title = StringUtils.EMPTY
+    const tmpList = (await ContentApi.searchContentByTitle(search)) as ContentEntity[]
     setContentList(tmpList)
   }
 
@@ -48,6 +38,20 @@ export default function () {
     const tmpList = (await ContentApi.searchContentByTitle(search)) as ContentEntity[]
     console.log(tmpList)
     setContentList(tmpList)
+  }
+
+  function generateMenuItems(content: ContentEntity) {
+    const items: MenuProps['items'] = [
+      {
+        label: '删除',
+        key: '1',
+        onClick: async () => {
+          await ContentApi.deleteContent(content)
+          await initData()
+        }
+      }
+    ]
+    return items
   }
 
   return (
@@ -85,22 +89,33 @@ export default function () {
           ></Add>
         </div>
         {contentList.map((content) => {
+          const items = generateMenuItems(content)
           return (
-            <Dropdown menu={{ items }} trigger={['contextMenu']} key={content.id}>
-              <div key={content.id} className={styles.contentItem}>
-                <NavLink
-                  to={`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`}
-                  className={({ isActive }) =>
-                    isActive ? styles.contentLinkSelected : styles.contentLink
-                  }
-                >
-                  <div className={styles.titleText}>{content.title}</div>
-                  <div className={styles.titleDate}>
-                    {dayjs(content.gmtCreate).format('YYYY/MM/DD')}
-                  </div>
-                </NavLink>
-              </div>
-            </Dropdown>
+            <ConfigProvider
+              theme={{
+                token: {
+                  /* 这里是你的全局 token */
+                  colorText: 'white',
+                  colorBgElevated: 'grey'
+                }
+              }}
+            >
+              <Dropdown trigger={['contextMenu']} key={content.id} menu={{ items }}>
+                <div key={content.id} className={styles.contentItem}>
+                  <NavLink
+                    to={`/config/categoryList/contentList/${content.categoryId}/content/${content.id}`}
+                    className={({ isActive }) =>
+                      isActive ? styles.contentLinkSelected : styles.contentLink
+                    }
+                  >
+                    <div className={styles.titleText}>{content.title}</div>
+                    <div className={styles.titleDate}>
+                      {dayjs(content.gmtCreate).format('YYYY/MM/DD')}
+                    </div>
+                  </NavLink>
+                </div>
+              </Dropdown>
+            </ConfigProvider>
           )
         })}
       </div>

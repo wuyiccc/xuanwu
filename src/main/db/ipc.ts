@@ -23,6 +23,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return ContentMapper.searchContentByTitle(newContent.title!, newContent.categoryId!)
   } else if ('ContentMapper.addContent' === methodName) {
     return ContentMapper.addContent(methodParam as ContentEntity)
+  } else if ('ContentMapper.deleteContent' === methodName) {
+    return ContentMapper.deleteContent(methodParam)
   }
   return null
 })
