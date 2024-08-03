@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { ConfigProvider, Dropdown, MenuProps } from 'antd'
 import StringUtils from '../../utils/StringUtils'
 
-export default function() {
+export default function () {
   const categoryId = StatusDB.db((state) => state.categoryId)
   // const submit = useSubmit()
 
@@ -29,8 +29,7 @@ export default function() {
     setContentList(tmpList)
   }
 
-  useEffect(() => {
-  }, [categoryId])
+  useEffect(() => {}, [categoryId])
 
   const searchData = async (searchWord: string) => {
     const search = new ContentEntity()
@@ -49,6 +48,12 @@ export default function() {
         onClick: async () => {
           await ContentApi.deleteContent(content)
           await initData()
+
+          const newContent = contentList[0]
+          console.log(newContent)
+          navigate(
+            `/config/categoryList/contentList/${newContent.categoryId}/content/${newContent.id}`
+          )
         }
       }
     ]
@@ -83,24 +88,24 @@ export default function() {
 
               await initData()
 
-              console.log(data[0].id)
-
-              navigate(`/config/categoryList/contentList/${categoryId}/content/${data[0].id}`)
+              if (contentList.length >= 1) {
+                navigate(`/config/categoryList/contentList/${categoryId}/content/${data[0].id}`)
+              }
             }}
           ></Add>
         </div>
-        {contentList.map((content) => {
-          const items = generateMenuItems(content)
-          return (
-            <ConfigProvider
-              theme={{
-                token: {
-                  /* 这里是你的全局 token */
-                  colorText: 'white',
-                  colorBgElevated: 'grey'
-                }
-              }}
-            >
+        <ConfigProvider
+          theme={{
+            token: {
+              /* 这里是你的全局 token */
+              colorText: 'white',
+              colorBgElevated: 'grey'
+            }
+          }}
+        >
+          {contentList.map((content) => {
+            const items = generateMenuItems(content)
+            return (
               <Dropdown trigger={['contextMenu']} key={content.id} menu={{ items }}>
                 <div key={content.id} className={styles.contentItem}>
                   <NavLink
@@ -116,9 +121,9 @@ export default function() {
                   </NavLink>
                 </div>
               </Dropdown>
-            </ConfigProvider>
-          )
-        })}
+            )
+          })}
+        </ConfigProvider>
       </div>
       <div className={styles.content}>
         <Outlet></Outlet>
