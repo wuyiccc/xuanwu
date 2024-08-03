@@ -113,6 +113,13 @@ export default function () {
                     className={({ isActive }) =>
                       isActive ? styles.contentLinkSelected : styles.contentLink
                     }
+                    onDragStart={(e) => {
+                      // 传输数据
+                      e.dataTransfer.setData('contentId', String(content.id))
+                    }}
+                    onDragEnd={() => {
+                      initData()
+                    }}
                   >
                     <div className={styles.titleText}>{content.title}</div>
                     <div className={styles.titleDate}>

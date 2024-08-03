@@ -16,4 +16,8 @@ export default class ContentApi {
   public static async deleteContent(data: ContentEntity) {
     return window.api.mapper('ContentMapper.deleteContent', data)
   }
+
+  public static async updateContentCategoryId(data: ContentEntity) {
+    return window.api.mapper('ContentMapper.updateContentCategoryId', data)
+  }
 }

@@ -28,6 +28,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return ContentMapper.deleteContent(methodParam)
   } else if ('CategoryMapper.updateCategoryById' === methodName) {
     return CategoryMapper.updateCategoryById(methodParam as CategoryEntity)
+  } else if ('ContentMapper.updateContentCategoryId' === methodName) {
+    return ContentMapper.updateContentCategoryId(methodParam)
   }
   return null
 })

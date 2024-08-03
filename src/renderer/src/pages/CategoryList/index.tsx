@@ -6,6 +6,8 @@ import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
 import CategoryApi from '../../api/CategoryApi'
 import { ConfigProvider, Input } from 'antd'
+import ContentEntity from '../../../../pojo/entity/ContentEntity'
+import ContentApi from '../../api/ContentApi'
 
 export default function () {
   const setCategoryId = StatusDB.db((state) => state.setCategoryId)
@@ -48,6 +50,7 @@ export default function () {
               if (editCategory && editCategory.id === category.id) {
                 return (
                   <ConfigProvider
+                    key={category.id}
                     theme={{
                       token: {
                         /* 这里是你的全局 token */
@@ -57,7 +60,6 @@ export default function () {
                     }}
                   >
                     <Input
-                      key={category.id}
                       placeholder="请输入分类名称"
                       value={editCategory.name}
                       onChange={(e) => {
@@ -73,7 +75,34 @@ export default function () {
               }
 
               return (
-                <div className={styles.commonCategoryItem}>
+                <div
+                  className={styles.commonCategoryItem}
+                  key={category.id}
+                  // 拖入
+                  onDragOver={(e) => {
+                    // prevent让onDrop事件能够正常执行
+                    e.preventDefault()
+                    // 去掉拖动的时候显示的加号
+                    e.dataTransfer.dropEffect = 'move'
+                    e.currentTarget.classList.add(styles.categoryItemOnDragOver)
+                    console.log(category.id)
+                  }}
+                  // 拖出
+                  onDragLeave={(e) => {
+                    e.currentTarget.classList.remove(styles.categoryItemOnDragOver)
+                  }}
+                  // 鼠标释放
+                  onDrop={(e) => {
+                    console.log('onDrop')
+                    e.currentTarget.classList.remove(styles.categoryItemOnDragOver)
+                    const contentId = Number(e.dataTransfer.getData('contentId'))
+                    console.log(contentId)
+                    const newData = new ContentEntity()
+                    newData.id = contentId
+                    newData.categoryId = category.id
+                    ContentApi.updateContentCategoryId(newData)
+                  }}
+                >
                   <NavLink
                     to={`/config/categoryList/contentList/${category.id}`}
                     key={category.id}

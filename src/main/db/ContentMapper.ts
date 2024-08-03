@@ -43,4 +43,8 @@ export default class ContentMapper {
   public static deleteContent(data: ContentEntity) {
     return db.delete(tContent).where(eq(tContent.id, data.id!))
   }
+
+  public static updateContentCategoryId(data: ContentEntity) {
+    return db.update(tContent).set({ categoryId: data.categoryId }).where(eq(tContent.id, data.id!))
+  }
 }
