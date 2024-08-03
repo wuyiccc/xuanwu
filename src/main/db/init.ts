@@ -38,3 +38,7 @@ create table if not exists config (
     content text not null
 );
 `)
+
+// db.exec(`
+// insert into config(id, content) values (1, '');
+// `)

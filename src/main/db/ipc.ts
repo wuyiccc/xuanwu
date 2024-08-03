@@ -3,6 +3,7 @@ import CategoryMapper from './CategoryMapper'
 import ContentMapper from './ContentMapper'
 import ContentEntity from '../../pojo/entity/ContentEntity'
 import CategoryEntity from '../../pojo/entity/CategoryEntity'
+import ConfigMapper from './ConfigMapper'
 
 ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, methodParam: any) => {
   // console.log(methodName)
@@ -30,6 +31,10 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return CategoryMapper.updateCategoryById(methodParam as CategoryEntity)
   } else if ('ContentMapper.updateContentCategoryId' === methodName) {
     return ContentMapper.updateContentCategoryId(methodParam)
+  } else if ('ConfigMapper.find' === methodName) {
+    return ConfigMapper.find()
+  } else if ('ConfigMapper.update' === methodName) {
+    return ConfigMapper.update(methodParam)
   }
   return null
 })

@@ -13,3 +13,8 @@ export const tContent = sqliteTable('content', {
   categoryId: integer('category_id'),
   gmtCreate: text('gmt_create')
 })
+
+export const tConfig = sqliteTable('config', {
+  id: integer('id'),
+  content: text('content')
+})
