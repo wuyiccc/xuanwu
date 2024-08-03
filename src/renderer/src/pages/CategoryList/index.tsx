@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import styles from './index.module.less'
 import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
@@ -127,7 +127,9 @@ export default function () {
         </div>
         <div className={styles.bottom}>
           <Add theme="outline" size="24" fill="#333" />
-          <SettingTwo theme="outline" size="24" fill="#333" />
+          <Link to="/config">
+            <SettingTwo theme="outline" size="24" fill="#333" />
+          </Link>
         </div>
       </div>
       <div className={styles.rightContainer}>

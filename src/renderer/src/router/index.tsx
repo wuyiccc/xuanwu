@@ -5,6 +5,7 @@ import ContentList from '../pages/ContentList'
 import CategoryList from '../pages/CategoryList'
 import Content from '../pages/Content'
 import Welcome from '../pages/Welcome'
+import Setting from '../pages/Setting'
 
 const router = createHashRouter([
   {
@@ -15,6 +16,10 @@ const router = createHashRouter([
     path: 'config',
     element: <Config />,
     children: [
+      {
+        index: true,
+        element: <Setting />
+      },
       {
         path: 'categoryList',
         element: <CategoryList />,
