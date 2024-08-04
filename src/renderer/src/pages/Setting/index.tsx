@@ -28,6 +28,7 @@ export default function () {
     configDTO.database = configForm.getFieldsValue().database
     await ConfigApi.update(JSON.stringify(configDTO))
     await initData()
+    await window.api.shortCut('search')
   }
 
   return (

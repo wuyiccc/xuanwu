@@ -15,7 +15,7 @@ export default function (): JSX.Element {
   }, [])
 
   const { register } = useShortcut()
-  register('search', 'CommandOrControl+Shift+;')
+  register('search')
 
   window.api.setIgnoreMouseEvents(false, { forward: true })
 

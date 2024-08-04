@@ -1,19 +1,26 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, IpcMainInvokeEvent } from 'electron'
+import ConfigMapper from '../db/ConfigMapper'
+import ConfigDTO from '../../pojo/dto/ConfigDTO'
 
 const config = {
   search: ''
 }
 
 export const registerShortCut = (win: BrowserWindow) => {
-  ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search', shortCut: string) => {
+  ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search') => {
+    // 查询数据库
+    const data = ConfigMapper.find()[0].content
+    const dto = JSON.parse(data!) as ConfigDTO
+    console.log(dto.shortCut)
+
     if (config.search) {
       globalShortcut.unregister(config.search)
     }
 
-    config.search = shortCut
+    config.search = dto.shortCut!
     switch (type) {
       case 'search':
-        return registerSearchShortCut(win, shortCut)
+        return registerSearchShortCut(win, dto.shortCut!)
     }
   })
 }

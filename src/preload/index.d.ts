@@ -6,7 +6,7 @@ declare global {
     electron: ElectronAPI
     api: {
       hideWindow: () => void
-      shortCut: (type: 'search', shortCut: string) => Promise<boolean>
+      shortCut: (type: 'search') => Promise<boolean>
       setIgnoreMouseEvents: (ignore: boolean, options?: {forward: boolean}) => void
       openConfigWindow: () => void
       mapper: <T>(methodName: string, methodParam: any) => Promise<T>
