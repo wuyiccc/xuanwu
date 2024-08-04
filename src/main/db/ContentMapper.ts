@@ -53,6 +53,6 @@ export default class ContentMapper {
       .select()
       .from(tContent)
       .where(like(tContent.title, `%${word}%`))
-      .limit(3)
+      .limit(10)
   }
 }
