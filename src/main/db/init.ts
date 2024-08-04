@@ -39,6 +39,10 @@ create table if not exists config (
 );
 `)
 
-// db.exec(`
-// insert into config(id, content) values (1, '');
-// `)
+db.exec(`
+delete from config where 1 = 1
+`)
+
+db.exec(`
+insert into config(id, content) values (1, '{"shortCut":"Meta+w","database":"testxx"}');
+`)
