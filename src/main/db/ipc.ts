@@ -37,6 +37,10 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return ConfigMapper.update(methodParam)
   } else if ('ContentMapper.getContentList' === methodName) {
     return ContentMapper.getContentList(methodParam)
+  } else if ('CategoryMapper.addCategory' === methodName) {
+    return CategoryMapper.addCategory(methodParam)
+  } else if ('CategoryMapper.delete' === methodName) {
+    return CategoryMapper.delete(methodParam)
   }
   return null
 })

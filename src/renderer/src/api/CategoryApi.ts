@@ -9,4 +9,12 @@ export default class CategoryApi {
   public static async getAllCategory() {
     return window.api.mapper('CategoryMapper.findAllCategory', StringUtils.EMPTY)
   }
+
+  public static async addCategory(data: CategoryEntity) {
+    return window.api.mapper('CategoryMapper.addCategory', data)
+  }
+
+  public static async delete(data: CategoryEntity) {
+    return window.api.mapper('CategoryMapper.delete', data)
+  }
 }

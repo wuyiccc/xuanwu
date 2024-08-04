@@ -28,9 +28,9 @@ create table if not exists content (
 // insert into category(name, gmt_create) values('xuanwu', datetime());
 // `)
 
-db.exec(`
-insert into content(title, content, category_id, gmt_create) values('react', 'zustand', 1, datetime());
-`)
+// db.exec(`
+// insert into content(title, content, category_id, gmt_create) values('react', 'zustand', 1, datetime());
+// `)
 
 db.exec(`
 create table if not exists config (

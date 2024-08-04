@@ -1,6 +1,6 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
-import { Add, FolderCodeOne, SettingTwo } from '@icon-park/react'
+import { Add, DeleteOne, FolderCodeOne, SettingTwo } from '@icon-park/react'
 import CategoryEntity from '../../../../pojo/entity/CategoryEntity'
 import StatusDB from '../../status/StatusDB'
 import { useEffect, useState } from 'react'
@@ -8,11 +8,12 @@ import CategoryApi from '../../api/CategoryApi'
 import { ConfigProvider, Input } from 'antd'
 import ContentEntity from '../../../../pojo/entity/ContentEntity'
 import ContentApi from '../../api/ContentApi'
+import dayjs from 'dayjs'
 
 export default function () {
   const setCategoryId = StatusDB.db((state) => state.setCategoryId)
   const [categoryList, setCategoryList] = useState<CategoryEntity[]>([])
-
+  const navigate = useNavigate()
   const [editCategory, setEditCategory] = useState<CategoryEntity>()
 
   useEffect(() => {
@@ -22,6 +23,16 @@ export default function () {
   const initData = async () => {
     const myList = (await CategoryApi.getAllCategory()) as CategoryEntity[]
     setCategoryList(myList)
+  }
+
+  const addCategory = async () => {
+    const categoryEntity = new CategoryEntity()
+    categoryEntity.name = '新建分类'
+    categoryEntity.gmtCreate = dayjs().format('YYYY-MM-DD HH:mm:ss')
+    const res = (await CategoryApi.addCategory(categoryEntity)) as CategoryEntity[]
+    const newId = res[0]!.id
+    navigate(`/config/categoryList/contentList/${newId}`)
+    await initData()
   }
 
   const updateCategory = async () => {
@@ -116,8 +127,21 @@ export default function () {
                     onDoubleClick={() => setEditCategory(category)}
                   >
                     <div className={styles.categoryContainer}>
-                      <FolderCodeOne theme="outline" size="12" strokeWidth={3} />
-                      <div className={styles.categoryText}>{category.name}</div>
+                      <div className={styles.categoryContainer1}>
+                        <FolderCodeOne theme="outline" size="12" strokeWidth={3} />
+                        <div className={styles.categoryText}>{category.name}</div>
+                      </div>
+
+                      <DeleteOne
+                        theme="outline"
+                        size="12"
+                        fill="#333"
+                        className={styles.deleteIcon}
+                        onClick={async () => {
+                          await CategoryApi.delete(category)
+                          await initData()
+                        }}
+                      />
                     </div>
                   </NavLink>
                 </div>
@@ -126,7 +150,7 @@ export default function () {
           </ConfigProvider>
         </div>
         <div className={styles.bottom}>
-          <Add theme="outline" size="24" fill="#333" />
+          <Add theme="outline" size="24" fill="#333" onClick={addCategory} />
           <Link to="/config">
             <SettingTwo theme="outline" size="24" fill="#333" />
           </Link>
