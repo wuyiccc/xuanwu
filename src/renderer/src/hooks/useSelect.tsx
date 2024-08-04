@@ -18,18 +18,24 @@ export default () => {
       switch (e.code) {
         case 'ArrowUp':
           {
+            if (codeList.length === 0) return
             const index = codeList.findIndex((item) => item.id == id)
             setId(codeList[index - 1]?.id || codeList[codeList.length - 1].id)
           }
           break
         case 'ArrowDown':
           {
+            if (codeList.length === 0) return
             const index = codeList.findIndex((item) => item.id == id)
             setId(codeList[index + 1]?.id || codeList[0].id)
           }
           break
         case 'Enter': {
           selectItem(id)
+          break
+        }
+        case 'Escape': {
+          window.api.hideWindow()
           break
         }
       }
