@@ -17,7 +17,7 @@ export default function () {
     const dto = JSON.parse(str) as ConfigDTO
 
     configForm.setFieldsValue({
-      database: dto.database,
+      // database: dto.database,
       shortCut: dto.shortCut
     })
   }
@@ -25,7 +25,7 @@ export default function () {
   const update = async () => {
     const configDTO = new ConfigDTO()
     configDTO.shortCut = configForm.getFieldsValue().shortCut
-    configDTO.database = configForm.getFieldsValue().database
+    // configDTO.database = configForm.getFieldsValue().database
     await ConfigApi.update(JSON.stringify(configDTO))
     await initData()
     await window.api.shortCut('search')
@@ -63,9 +63,9 @@ export default function () {
               }}
             ></Input>
           </Form.Item>
-          <Form.Item label="数据库配置" name="database">
-            <Input></Input>
-          </Form.Item>
+          {/*<Form.Item label="数据库配置" name="database">*/}
+          {/*  <Input></Input>*/}
+          {/*</Form.Item>*/}
           <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ textAlign: 'right' }}>
             <Button type="primary" htmlType="submit" onClick={update}>
               保存
