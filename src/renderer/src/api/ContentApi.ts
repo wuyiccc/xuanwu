@@ -28,4 +28,8 @@ export default class ContentApi {
   public static async getContentById(id: number) {
     return window.api.mapper('ContentMapper.getContentById', id)
   }
+
+  public static async getContentList(word: string) {
+    return window.api.mapper('ContentMapper.getContentList', word)
+  }
 }

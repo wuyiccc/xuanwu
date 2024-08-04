@@ -47,4 +47,12 @@ export default class ContentMapper {
   public static updateContentCategoryId(data: ContentEntity) {
     return db.update(tContent).set({ categoryId: data.categoryId }).where(eq(tContent.id, data.id!))
   }
+
+  public static getContentList(word: string) {
+    return db
+      .select()
+      .from(tContent)
+      .where(like(tContent.title, `%${word}%`))
+      .limit(3)
+  }
 }

@@ -1,7 +1,8 @@
 import StatusDB from '../status/StatusDB'
 import { ChangeEvent, useEffect } from 'react'
 import StringUtils from '../utils/StringUtils'
-import { mockData } from '../mock/MockData'
+import ContentApi from '../api/ContentApi'
+import ContentEntity from '../../../pojo/entity/ContentEntity'
 
 export default () => {
   const setCodeList = StatusDB.db((state) => state.setCodeList)
@@ -14,7 +15,7 @@ export default () => {
     setId(codeList[0]?.id || 0)
   }, [codeList])
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     const inputStr = e.target.value
     if (StringUtils.isEmpty(inputStr)) {
       setSearch(inputStr)
@@ -22,9 +23,7 @@ export default () => {
       return
     }
     setSearch(inputStr)
-    const newList = mockData
-      .filter((code) => code.content.toLowerCase().includes(inputStr.toLowerCase()))
-      .splice(0, 6)
+    const newList = (await ContentApi.getContentList(inputStr)) as ContentEntity[]
     setCodeList(newList)
   }
 

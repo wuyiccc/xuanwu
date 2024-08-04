@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import { DataType } from '../mock/MockData'
 import StringUtils from '../utils/StringUtils'
+import ContentEntity from '../../../pojo/entity/ContentEntity'
 
 class StatusDB {
   public static db = create<{
-    codeList: DataType[]
-    setCodeList: (newData: DataType[]) => void
+    codeList: ContentEntity[]
+    setCodeList: (newData: ContentEntity[]) => void
     search: string
     setSearch: (search: string) => void
     error: string

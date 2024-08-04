@@ -1,11 +1,19 @@
 export default class ContentEntity {
-  id?: number
+  id: number
 
-  title?: string
+  title: string
 
-  content?: string
+  content: string
 
-  categoryId?: number
+  categoryId: number
 
-  gmtCreate?: string
+  gmtCreate: string
+
+  constructor(id: number, title: string, content: string, categoryId: number, gmtCreate: string) {
+    this.id = id
+    this.title = title
+    this.content = content
+    this.categoryId = categoryId
+    this.gmtCreate = gmtCreate
+  }
 }

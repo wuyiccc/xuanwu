@@ -35,6 +35,8 @@ ipcMain.handle('mapper', (_event: IpcMainInvokeEvent, methodName: string, method
     return ConfigMapper.find()
   } else if ('ConfigMapper.update' === methodName) {
     return ConfigMapper.update(methodParam)
+  } else if ('ContentMapper.getContentList' === methodName) {
+    return ContentMapper.getContentList(methodParam)
   }
   return null
 })

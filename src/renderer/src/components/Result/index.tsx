@@ -13,7 +13,7 @@ export default function () {
           className={`${styles.item} ${id === item.id ? styles.itemSelected : StringUtils.EMPTY}`}
           onClick={() => selectItem(item.id)}
         >
-          {item.content}
+          {item.title}
         </div>
       ))}
     </div>
