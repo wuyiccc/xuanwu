@@ -39,10 +39,17 @@ create table if not exists config (
 );
 `)
 
-db.exec(`
-delete from config where 1 = 1
-`)
+// 查询 config 表中的数据
+const rowCountJson = db.prepare('SELECT COUNT(*) as count FROM config').get() as string
 
-db.exec(`
-insert into config(id, content) values (1, '{"shortCut":"Meta+w","database":"testxx"}');
-`)
+const count = rowCountJson['count']
+console.log(count)
+
+if (count === 0) {
+  // 如果 config 表中没有数据，则插入新的数据
+  db.exec(`
+    insert into config(id, content) values (1, '{"shortCut":"Meta+w","database":"testxx"}');
+  `)
+} else {
+  console.log('config 表中已有数据，跳过插入')
+}
