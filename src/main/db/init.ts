@@ -2,7 +2,6 @@ import Database, * as BetterSqlite3 from 'better-sqlite3'
 import { resolve } from 'path'
 import { app } from 'electron'
 
-
 const file = resolve(app.getPath('home'), '.xuanwu', 'xuanwu.db')
 const db: BetterSqlite3.Database = new Database(file, {})
 db.pragma('journal_mode = WAL')
@@ -25,9 +24,9 @@ create table if not exists content (
 );
 `)
 
-db.exec(`
-insert into category(name, gmt_create) values('xuanwu', datetime());
-`)
+// db.exec(`
+// insert into category(name, gmt_create) values('xuanwu', datetime());
+// `)
 
 db.exec(`
 insert into content(title, content, category_id, gmt_create) values('react', 'zustand', 1, datetime());

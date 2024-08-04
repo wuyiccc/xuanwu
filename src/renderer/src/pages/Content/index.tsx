@@ -6,7 +6,7 @@ import ContentApi from '../../api/ContentApi'
 import { Button } from 'antd'
 
 export default function () {
-  const [content, setContent] = useState<ContentEntity>(new ContentEntity(0, '', '', 0, ''))
+  const [content, setContent] = useState<ContentEntity>(new ContentEntity('', '', 0, ''))
   const contentId = StatusDB.db((state) => state.contentId)
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function () {
             className={styles.title}
             value={content.title || ''}
             onChange={(e) => {
-              const newData = new ContentEntity(0, '', '', 0, '')
+              const newData = new ContentEntity('', '', 0, '')
               newData.id = content.id
               newData.title = e.target.value
               newData.content = content.content
@@ -49,7 +49,7 @@ export default function () {
             className={styles.content}
             value={content.content || ''}
             onChange={(e) => {
-              const newData = new ContentEntity(0, '', '', 0, '')
+              const newData = new ContentEntity('', '', 0, '')
               newData.id = content.id
               newData.title = content.title
               newData.content = e.target.value

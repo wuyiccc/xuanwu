@@ -22,7 +22,7 @@ export default function () {
   }, [categoryId])
 
   const initData = async () => {
-    const search = new ContentEntity(0, '', '', 0, '')
+    const search = new ContentEntity('', '', 0, '')
     search.categoryId = categoryId
     search.title = StringUtils.EMPTY
     const tmpList = (await ContentApi.searchContentByTitle(search)) as ContentEntity[]
@@ -32,7 +32,7 @@ export default function () {
   useEffect(() => {}, [categoryId])
 
   const searchData = async (searchWord: string) => {
-    const search = new ContentEntity(0, '', '', 0, '')
+    const search = new ContentEntity('', '', 0, '')
     search.categoryId = categoryId
     search.title = searchWord
     const tmpList = (await ContentApi.searchContentByTitle(search)) as ContentEntity[]
@@ -79,7 +79,7 @@ export default function () {
             strokeWidth={2}
             fill="#000000"
             onClick={async () => {
-              const c = new ContentEntity(0, '', '', 0, '')
+              const c = new ContentEntity('', '', 0, '')
               c.title = '未命名内容标题'
               c.content = '未命名内容'
               c.categoryId = categoryId

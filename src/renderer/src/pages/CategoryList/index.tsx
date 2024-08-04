@@ -97,7 +97,7 @@ export default function () {
                     e.currentTarget.classList.remove(styles.categoryItemOnDragOver)
                     const contentId = Number(e.dataTransfer.getData('contentId'))
                     console.log(contentId)
-                    const newData = new ContentEntity(0, '', '', 0, '')
+                    const newData = new ContentEntity('', '', 0, '')
                     newData.id = contentId
                     newData.categoryId = category.id!
                     ContentApi.updateContentCategoryId(newData)

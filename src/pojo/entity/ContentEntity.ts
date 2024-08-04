@@ -1,5 +1,5 @@
 export default class ContentEntity {
-  id: number
+  id?: number
 
   title: string
 
@@ -9,8 +9,7 @@ export default class ContentEntity {
 
   gmtCreate: string
 
-  constructor(id: number, title: string, content: string, categoryId: number, gmtCreate: string) {
-    this.id = id
+  constructor(title: string, content: string, categoryId: number, gmtCreate: string) {
     this.title = title
     this.content = content
     this.categoryId = categoryId
