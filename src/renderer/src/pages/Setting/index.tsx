@@ -1,11 +1,12 @@
 import styles from './index.module.less'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import ConfigApi from '../../api/ConfigApi'
 import ConfigDTO from '../../../../pojo/dto/ConfigDTO'
 import { Button, Form, Input } from 'antd'
 
 export default function () {
   const [configForm] = Form.useForm()
+  const [keys, setKeys] = useState<string[]>([])
 
   useEffect(() => {
     initData()
@@ -41,7 +42,25 @@ export default function () {
           labelAlign="right"
         >
           <Form.Item label="快捷键配置" name="shortCut">
-            <Input></Input>
+            <Input
+              value={keys.join(' + ')}
+              onKeyDown={(e) => {
+                e.preventDefault() // 防止输入框中出现字符
+
+                let newKeys = keys
+                if (e.key === 'Backspace') {
+                  newKeys = []
+                  setKeys(newKeys)
+                } else {
+                  newKeys.push(e.key)
+                  setKeys(newKeys)
+                }
+
+                configForm.setFieldsValue({
+                  shortCut: newKeys.join('+')
+                })
+              }}
+            ></Input>
           </Form.Item>
           <Form.Item label="数据库配置" name="database">
             <Input></Input>
